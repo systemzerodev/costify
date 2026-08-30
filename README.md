@@ -5,33 +5,35 @@
 </p>
 
 <p align="center">
-  <strong>Hitung Modal, HPP, Profit & Harga Jual.</strong>
+  <strong>Calculate Smart. Sell Confident.</strong>
 </p>
 
 <p align="center">
-  A simple Flutter application for calculating production costs, HPP, profit, and selling prices.
+  Simple web app untuk menghitung modal, HPP, profit, margin, dan harga jual.
 </p>
 
 ---
 
 ## About Costify
 
-**Costify** adalah aplikasi Flutter sederhana yang dirancang untuk membantu menghitung:
+**Costify** adalah aplikasi web sederhana yang dirancang untuk membantu proses perhitungan biaya produksi dan penentuan harga jual.
 
-* Modal produksi
-* Total biaya
-* HPP per unit
-* Profit
-* Markup / margin
-* Harga jual
+Costify membantu menghitung:
 
-Costify dibuat dengan pendekatan sederhana, fleksibel, dan mudah digunakan.
+- Modal produksi
+- Total biaya
+- HPP per unit
+- Profit
+- Markup
+- Profit margin
+- Harga jual
+- Harga jual rekomendasi
 
-Pengguna dapat menentukan sendiri komponen biaya sesuai kebutuhan tanpa bergantung pada kategori biaya yang sudah ditentukan aplikasi.
+Costify dibuat dengan pendekatan **simple, flexible, responsive, dan local-first** agar nyaman digunakan melalui desktop maupun smartphone.
 
 ---
 
-## Main Concept
+## Main Calculation Flow
 
 Alur dasar Costify:
 
@@ -44,7 +46,7 @@ Jumlah Produk
       ↓
 HPP per Unit
       ↓
-Target Profit
+Target Profit / Margin
       ↓
 Harga Jual
 ```
@@ -53,9 +55,9 @@ Harga Jual
 
 ## Flexible Cost Input
 
-Costify menggunakan sistem komponen biaya yang fleksibel.
+Costify tidak membatasi pengguna dengan kategori biaya yang sudah ditentukan.
 
-Pengguna dapat menambahkan sendiri nama dan nominal biaya sesuai kebutuhan.
+Pengguna dapat membuat sendiri setiap komponen biaya sesuai kebutuhan.
 
 Contoh:
 
@@ -70,19 +72,19 @@ Ring Keychain         Rp1.000
 + Tambah Biaya
 ```
 
-Setiap komponen dapat:
+Setiap komponen biaya nantinya dapat:
 
-* Ditambahkan
-* Diubah
-* Dihapus
-* Diberi nama secara manual
-* Diisi nominal sesuai kebutuhan
+- Ditambahkan
+- Diubah
+- Dihapus
+- Diberi nama secara manual
+- Diisi nominal sesuai kebutuhan
 
-Dengan sistem ini, Costify dapat digunakan untuk berbagai jenis produk.
+Dengan sistem ini, Costify dapat digunakan untuk berbagai jenis produk dan kebutuhan bisnis.
 
 ---
 
-## Core Calculation
+## Core Calculations
 
 ### Total Modal
 
@@ -98,21 +100,25 @@ HPP per Unit =
 Total Modal ÷ Jumlah Produk
 ```
 
-### Profit
+### Markup
 
 ```text
-Profit =
-HPP × Persentase Profit
+Markup (%) =
+Profit ÷ HPP × 100
+```
+
+### Profit Margin
+
+```text
+Margin (%) =
+Profit ÷ Harga Jual × 100
 ```
 
 ### Harga Jual
 
-```text
-Harga Jual =
-HPP + Profit
-```
+Harga jual dapat dihitung berdasarkan target markup atau margin yang ditentukan pengguna.
 
-Costify juga direncanakan mendukung perhitungan berdasarkan **markup**, **margin**, dan **harga jual manual**.
+Costify juga direncanakan memiliki mode harga jual manual untuk menghitung profit, markup, dan margin dari harga jual yang sudah ditentukan.
 
 ---
 
@@ -120,23 +126,49 @@ Costify juga direncanakan mendukung perhitungan berdasarkan **markup**, **margin
 
 Costify V1 akan berfokus pada kalkulator utama.
 
-* [ ] Input nama produk
-* [ ] Input jumlah produk
-* [ ] Dynamic cost components
-* [ ] Tambah komponen biaya
-* [ ] Edit komponen biaya
-* [ ] Hapus komponen biaya
-* [ ] Hitung total modal
-* [ ] Hitung HPP per unit
-* [ ] Target profit
-* [ ] Markup calculation
-* [ ] Margin calculation
-* [ ] Manual selling price
-* [ ] Profit per unit
-* [ ] Harga jual rekomendasi
-* [ ] Pembulatan harga jual
-* [ ] Reset kalkulator
-* [ ] Offline calculation
+- [ ] Input nama produk
+- [ ] Input jumlah produk
+- [ ] Dynamic cost components
+- [ ] Tambah komponen biaya
+- [ ] Edit komponen biaya
+- [ ] Hapus komponen biaya
+- [ ] Hitung total modal
+- [ ] Hitung HPP per unit
+- [ ] Markup calculation
+- [ ] Profit margin calculation
+- [ ] Manual selling price
+- [ ] Profit per unit
+- [ ] Harga jual rekomendasi
+- [ ] Pembulatan harga jual
+- [ ] Reset kalkulator
+- [ ] Responsive mobile layout
+- [ ] Responsive desktop layout
+- [ ] Local data storage
+
+---
+
+## Web App & PWA
+
+Costify dirancang sebagai web application yang dapat digunakan langsung melalui browser.
+
+Pada tahap berikutnya, Costify akan dikembangkan menjadi **Progressive Web App (PWA)** sehingga dapat:
+
+- Di-install ke Home Screen
+- Memiliki application icon
+- Dibuka seperti aplikasi biasa
+- Mendukung penggunaan offline
+- Berjalan di desktop maupun smartphone
+- Menyimpan data secara lokal
+
+```text
+Costify Web
+     ↓
+Responsive Web App
+     ↓
+Progressive Web App
+     ↓
+Install to Device
+```
 
 ---
 
@@ -144,35 +176,48 @@ Costify V1 akan berfokus pada kalkulator utama.
 
 Costify dibangun menggunakan:
 
-* **Flutter**
-* **Dart**
-* Local-first architecture
-* Offline calculation
+- **React**
+- **TypeScript**
+- **Vite**
+- **CSS**
+- **Browser Local Storage**
 
-Untuk tahap awal, Costify tidak membutuhkan server atau layanan cloud.
+Rencana pengembangan berikutnya:
 
-Penyimpanan lokal dapat ditambahkan ketika fitur riwayat dan penyimpanan produk mulai dikembangkan.
+- Progressive Web App
+- Service Worker
+- Offline Support
+- IndexedDB
+- Local Data Persistence
 
 ---
 
 ## Project Structure
 
-Struktur project awal:
+Struktur awal project:
 
 ```text
 costify/
-├── android/
-├── ios/
-├── lib/
-├── test/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── features/
+│   ├── hooks/
+│   ├── utils/
+│   ├── App.tsx
+│   └── main.tsx
 ├── assets/
 │   └── readme/
 │       └── costify-banner.png
-├── pubspec.yaml
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
 └── README.md
 ```
 
-Struktur internal `lib/` akan dikembangkan secara bertahap mengikuti kebutuhan aplikasi.
+Struktur dapat berkembang mengikuti kebutuhan aplikasi selama development.
 
 ---
 
@@ -189,23 +234,154 @@ HPP
   ↓
 Profit
   ↓
+Markup / Margin
+  ↓
 Harga Jual
 ```
 
-### Future Development
+Target V1:
 
-Setelah kalkulator utama stabil, Costify dapat dikembangkan dengan fitur:
+- Kalkulator modal
+- Dynamic cost input
+- HPP per unit
+- Profit calculation
+- Markup calculation
+- Margin calculation
+- Harga jual manual
+- Harga jual rekomendasi
+- Responsive layout
 
-* Riwayat perhitungan
-* Simpan produk
-* Edit produk
-* Duplicate calculation
-* Database lokal
-* Dashboard
-* Statistik biaya
-* Statistik profit
-* Export data
-* Backup data
+---
+
+### V2 — Local Data
+
+Direncanakan:
+
+- Riwayat perhitungan
+- Simpan produk
+- Edit produk
+- Duplicate calculation
+- Local storage
+- Product history
+
+---
+
+### V3 — Progressive Web App
+
+Direncanakan:
+
+- PWA manifest
+- Application icon
+- Install to device
+- Offline mode
+- Service worker
+- App-like experience
+
+---
+
+## Future Development
+
+Setelah fitur utama stabil, Costify dapat dikembangkan lebih lanjut dengan:
+
+- Dashboard
+- Statistik biaya
+- Statistik profit
+- Product library
+- Cost templates
+- Export data
+- Import data
+- Backup data
+- Restore data
+- IndexedDB storage
+- Data visualization
+- Multi-product calculation
+
+---
+
+## Design Principles
+
+Costify dikembangkan dengan beberapa prinsip utama.
+
+### Simple
+
+Interface dibuat sederhana agar pengguna dapat langsung memahami cara penggunaan tanpa proses belajar yang panjang.
+
+### Flexible
+
+Komponen biaya tidak dibatasi oleh kategori tertentu.
+
+Pengguna bebas menentukan kebutuhan biaya sesuai produk masing-masing.
+
+### Responsive
+
+Costify dirancang agar dapat digunakan dengan nyaman pada:
+
+- Desktop
+- Laptop
+- Tablet
+- Smartphone
+
+### Local First
+
+Sebagian besar fitur utama dirancang agar dapat berjalan tanpa server.
+
+Data dapat disimpan secara lokal pada perangkat pengguna.
+
+### Offline Friendly
+
+Ketika dukungan PWA sudah diterapkan, Costify akan tetap dapat digunakan untuk kalkulasi dasar meskipun tanpa koneksi internet.
+
+---
+
+## Example Calculation
+
+Contoh sederhana:
+
+```text
+Nama Produk:
+Keychain Custom
+
+Jumlah Produk:
+1
+
+Komponen Biaya:
+
+Filament          Rp15.000
+Listrik            Rp2.000
+Kemasan            Rp2.500
+Ring Keychain      Rp1.000
+──────────────────────────
+Total Modal       Rp20.500
+```
+
+Karena jumlah produk adalah `1`:
+
+```text
+HPP per Unit
+Rp20.500
+```
+
+Jika target markup:
+
+```text
+30%
+```
+
+Maka:
+
+```text
+Profit
+Rp6.150
+
+Harga Jual
+Rp26.650
+```
+
+Costify kemudian dapat memberikan rekomendasi pembulatan harga jual, misalnya:
+
+```text
+Rp27.000
+```
 
 ---
 
@@ -215,31 +391,39 @@ Setelah kalkulator utama stabil, Costify dapat dikembangkan dengan fitur:
 
 Current progress:
 
-* [x] Nama aplikasi ditentukan
-* [x] Logo Costify dibuat
-* [x] Banner Costify dibuat
-* [x] GitHub repository dibuat
-* [ ] Flutter project initialization
-* [ ] Application structure
-* [ ] Costify theme
-* [ ] Calculator UI
-* [ ] Calculation logic
-* [ ] Dynamic cost input
-* [ ] Testing
+- [x] Application name finalized
+- [x] Costify visual identity created
+- [x] Costify web banner created
+- [x] GitHub repository created
+- [x] Project direction changed to Web App
+- [x] Initial application concept created
+- [x] V1 calculation concept created
+- [ ] React + Vite + TypeScript initialization
+- [ ] Project structure
+- [ ] Costify design system
+- [ ] Responsive layout
+- [ ] Calculator UI
+- [ ] Dynamic cost input
+- [ ] Calculation logic
+- [ ] Local storage
+- [ ] PWA support
+- [ ] Testing
 
 ---
 
 ## Project Goal
 
-Costify dibuat untuk membuat proses menghitung biaya produksi dan menentukan harga jual menjadi lebih sederhana.
+Costify dibuat untuk membuat proses menghitung biaya produksi dan menentukan harga jual menjadi lebih cepat, jelas, dan mudah dipahami.
+
+Costify tidak hanya ditujukan sebagai kalkulator sederhana, tetapi sebagai alat bantu perhitungan bisnis yang fleksibel dan mudah digunakan.
 
 <p align="center">
-  <strong>Calculate Better. Sell Smarter.</strong>
+  <strong>Calculate Smart. Sell Confident.</strong>
 </p>
 
 ---
 
 <p align="center">
   <strong>Costify</strong><br>
-  Built with Flutter
+  Built with React, TypeScript & Vite
 </p>
