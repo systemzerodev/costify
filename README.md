@@ -1,429 +1,553 @@
-<h1 align="center">Costify</h1>
-
 <p align="center">
-  <img src="assets/readme/costify-banner.png" alt="Costify Banner" width="100%">
+  <img src="assets/readme/costify-banner.png" alt="Costify Banner">
 </p>
+
+<h1 align="center">Costify</h1>
 
 <p align="center">
   <strong>Calculate Smart. Sell Confident.</strong>
 </p>
 
 <p align="center">
-  Simple web app untuk menghitung modal, HPP, profit, margin, dan harga jual.
+  Simple web app untuk menghitung modal, HPP, profit, markup, margin, dan harga jual produk.
 </p>
 
 ---
 
-## About Costify
+## ✨ Features
 
-**Costify** adalah aplikasi web sederhana yang dirancang untuk membantu proses perhitungan biaya produksi dan penentuan harga jual.
+### 🧮 Cost Calculator
 
-Costify membantu menghitung:
+Hitung seluruh biaya produksi dalam satu tempat.
 
-- Modal produksi
-- Total biaya
+- Nama produk
+- Jumlah produk
+- Komponen biaya dinamis
+- Tambah dan hapus komponen biaya
+- Total modal
 - HPP per unit
-- Profit
-- Markup
-- Profit margin
-- Harga jual
-- Harga jual rekomendasi
 
-Costify dibuat dengan pendekatan **simple, flexible, responsive, dan local-first** agar nyaman digunakan melalui desktop maupun smartphone.
+Komponen biaya tidak menggunakan kategori tetap, sehingga pengguna bebas memasukkan biaya seperti:
+
+- Material
+- Listrik
+- Packaging
+- Aksesoris
+- Ongkos produksi
+- Biaya tambahan lainnya
 
 ---
 
-## Main Calculation Flow
+### 💰 Selling Price Calculator
 
-Alur dasar Costify:
+Costify menyediakan tiga metode untuk menentukan harga jual.
+
+#### Markup
+
+Harga jual dihitung berdasarkan persentase keuntungan terhadap HPP.
 
 ```text
-Komponen Biaya
-      ↓
-Total Modal
-      ↓
-Jumlah Produk
-      ↓
-HPP per Unit
-      ↓
-Target Profit / Margin
-      ↓
-Harga Jual
+Profit Target = HPP × Markup
+Harga Jual = HPP + Profit Target
 ```
+
+#### Margin
+
+Harga jual dihitung berdasarkan target margin dari harga jual.
+
+```text
+Harga Jual = HPP / (1 - Margin)
+```
+
+#### Manual Selling Price
+
+Pengguna dapat menentukan harga jual sendiri dan Costify akan menghitung:
+
+- Profit per unit
+- Markup aktual
+- Margin aktual
+- Potensi profit total
 
 ---
 
-## Flexible Cost Input
+### 🎯 Recommended Selling Price
 
-Costify tidak membatasi pengguna dengan kategori biaya yang sudah ditentukan.
+Untuk mode **Markup** dan **Margin**, hasil harga jual otomatis dibulatkan ke atas ke kelipatan:
 
-Pengguna dapat membuat sendiri setiap komponen biaya sesuai kebutuhan.
+```text
+Rp500
+```
 
 Contoh:
 
 ```text
-Nama Komponen        Nominal
-
-Filament             Rp15.000
-Listrik               Rp2.000
-Kemasan               Rp2.500
-Ring Keychain         Rp1.000
-
-+ Tambah Biaya
+HPP               Rp2.050
+Markup             30%
+Harga Jual Hitung  Rp2.665
+Harga Rekomendasi  Rp3.000
+Profit Aktual      Rp950
 ```
 
-Setiap komponen biaya nantinya dapat:
-
-- Ditambahkan
-- Diubah
-- Dihapus
-- Diberi nama secara manual
-- Diisi nominal sesuai kebutuhan
-
-Dengan sistem ini, Costify dapat digunakan untuk berbagai jenis produk dan kebutuhan bisnis.
+Profit aktual dihitung menggunakan **harga jual akhir setelah pembulatan**, bukan harga sebelum pembulatan.
 
 ---
 
-## Core Calculations
+### 📊 Calculation Summary
+
+Costify menampilkan ringkasan hasil berupa:
+
+- Nama produk
+- Jumlah produksi
+- Metode perhitungan
+- Total modal
+- HPP per unit
+- Profit target
+- Harga jual hitung
+- Harga jual akhir
+- Profit aktual per unit
+- Markup aktual
+- Margin aktual
+- Potensi profit total
+- Status profit atau rugi
+
+---
+
+### 💾 Local Storage
+
+Perhitungan dapat disimpan langsung di browser menggunakan **Local Storage**.
+
+Saat ini Costify tidak membutuhkan:
+
+- Database server
+- Akun pengguna
+- Backend
+- API eksternal
+
+Data tetap tersedia selama Local Storage browser tidak dihapus.
+
+---
+
+### 🕘 Calculation History
+
+Halaman **Riwayat** menyimpan seluruh perhitungan yang sudah disimpan.
+
+Setiap riwayat menampilkan:
+
+- Nama produk
+- Tanggal perhitungan
+- Jumlah produk
+- Metode perhitungan
+- Total modal
+- HPP per unit
+- Harga jual
+- Profit per unit
+- Markup aktual
+- Margin aktual
+- Potensi profit
+- Komponen biaya
+
+---
+
+### ✏️ Edit Calculation
+
+Perhitungan lama dapat dibuka kembali ke kalkulator.
+
+Semua data sebelumnya otomatis dimuat sehingga pengguna dapat mengubah:
+
+- Nama produk
+- Jumlah produk
+- Komponen biaya
+- Nilai biaya
+- Metode harga jual
+- Markup
+- Margin
+- Harga jual manual
+
+Saat perubahan disimpan, Costify memperbarui data lama tanpa membuat riwayat duplikat.
+
+---
+
+### 🗑️ Delete History
+
+Perhitungan yang sudah tidak diperlukan dapat dihapus dari halaman **Riwayat**.
+
+Costify meminta konfirmasi sebelum data benar-benar dihapus.
+
+---
+
+### 📦 Product Overview
+
+Halaman **Produk** otomatis dibuat berdasarkan data yang tersedia di Riwayat.
+
+Produk dengan nama yang sama akan digabung menjadi satu produk.
+
+Contoh:
+
+```text
+RIWAYAT
+
+Keychain Custom
+Keychain Custom
+Phone Stand
+```
+
+Akan menghasilkan:
+
+```text
+PRODUK
+
+Keychain Custom
+2 perhitungan
+
+Phone Stand
+1 perhitungan
+```
+
+Setiap produk menampilkan informasi terbaru berupa:
+
+- Jumlah perhitungan
+- HPP terbaru
+- Harga jual terbaru
+- Profit per unit
+- Margin aktual
+- Total modal terbaru
+- Metode perhitungan
+- Tanggal perhitungan terakhir
+- Status profit atau rugi
+
+Riwayat tetap menyimpan seluruh versi perhitungan sehingga perubahan biaya produk dari waktu ke waktu tetap dapat dilihat.
+
+---
+
+## 📱 Responsive Design
+
+Costify dibuat agar nyaman digunakan pada desktop maupun mobile.
+
+### Desktop
+
+Menggunakan top navigation:
+
+```text
+Costify | Kalkulator | Riwayat | Produk
+```
+
+### Mobile
+
+Menggunakan:
+
+- Mobile brand header
+- Bottom navigation
+
+```text
+Kalkulator | Riwayat | Produk
+```
+
+Layout kalkulator, riwayat, dan produk otomatis menyesuaikan ukuran layar.
+
+---
+
+## 🛠️ Tech Stack
+
+Costify saat ini menggunakan:
+
+- React
+- TypeScript
+- Vite
+- React Router
+- Lucide React
+- CSS
+- Browser Local Storage
+
+---
+
+## 📐 Calculation Formula
 
 ### Total Modal
 
 ```text
-Total Modal =
-Jumlah seluruh komponen biaya
+Total Modal = Total seluruh komponen biaya
 ```
 
 ### HPP per Unit
 
 ```text
-HPP per Unit =
-Total Modal ÷ Jumlah Produk
+HPP per Unit = Total Modal / Jumlah Produk
 ```
 
 ### Markup
 
 ```text
-Markup (%) =
-Profit ÷ HPP × 100
+Markup (%) = Profit / HPP × 100
 ```
 
-### Profit Margin
+### Margin
 
 ```text
-Margin (%) =
-Profit ÷ Harga Jual × 100
+Margin (%) = Profit / Harga Jual × 100
 ```
 
-### Harga Jual
-
-Harga jual dapat dihitung berdasarkan target markup atau margin yang ditentukan pengguna.
-
-Costify juga direncanakan memiliki mode harga jual manual untuk menghitung profit, markup, dan margin dari harga jual yang sudah ditentukan.
-
----
-
-## Planned V1 Features
-
-Costify V1 akan berfokus pada kalkulator utama.
-
-- [ ] Input nama produk
-- [ ] Input jumlah produk
-- [ ] Dynamic cost components
-- [ ] Tambah komponen biaya
-- [ ] Edit komponen biaya
-- [ ] Hapus komponen biaya
-- [ ] Hitung total modal
-- [ ] Hitung HPP per unit
-- [ ] Markup calculation
-- [ ] Profit margin calculation
-- [ ] Manual selling price
-- [ ] Profit per unit
-- [ ] Harga jual rekomendasi
-- [ ] Pembulatan harga jual
-- [ ] Reset kalkulator
-- [ ] Responsive mobile layout
-- [ ] Responsive desktop layout
-- [ ] Local data storage
-
----
-
-## Web App & PWA
-
-Costify dirancang sebagai web application yang dapat digunakan langsung melalui browser.
-
-Pada tahap berikutnya, Costify akan dikembangkan menjadi **Progressive Web App (PWA)** sehingga dapat:
-
-- Di-install ke Home Screen
-- Memiliki application icon
-- Dibuka seperti aplikasi biasa
-- Mendukung penggunaan offline
-- Berjalan di desktop maupun smartphone
-- Menyimpan data secara lokal
+### Selling Price from Markup
 
 ```text
-Costify Web
-     ↓
-Responsive Web App
-     ↓
-Progressive Web App
-     ↓
-Install to Device
+Harga Jual = HPP + (HPP × Markup)
+```
+
+### Selling Price from Margin
+
+```text
+Harga Jual = HPP / (1 - Margin)
+```
+
+Margin harus lebih kecil dari:
+
+```text
+100%
+```
+
+### Actual Profit
+
+```text
+Profit Aktual = Harga Jual Akhir - HPP
+```
+
+### Actual Markup
+
+```text
+Markup Aktual = Profit Aktual / HPP × 100
+```
+
+### Actual Margin
+
+```text
+Margin Aktual = Profit Aktual / Harga Jual Akhir × 100
+```
+
+### Total Potential Profit
+
+```text
+Potensi Profit Total = Profit Aktual per Unit × Jumlah Produk
 ```
 
 ---
 
-## Tech Stack
+## 🚀 Getting Started
 
-Costify dibangun menggunakan:
+### Requirements
 
-- **React**
-- **TypeScript**
-- **Vite**
-- **CSS**
-- **Browser Local Storage**
+Pastikan sudah menginstal:
 
-Rencana pengembangan berikutnya:
-
-- Progressive Web App
-- Service Worker
-- Offline Support
-- IndexedDB
-- Local Data Persistence
+- Node.js
+- npm
+- Git
 
 ---
 
-## Project Structure
+### Clone Repository
 
-Struktur awal project:
+```bash
+git clone <repository-url>
+```
+
+Masuk ke folder project:
+
+```bash
+cd costify
+```
+
+---
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+Buka alamat yang ditampilkan oleh Vite di browser.
+
+Biasanya:
+
+```text
+http://localhost:5173
+```
+
+---
+
+### Production Build
+
+```bash
+npm run build
+```
+
+Untuk melihat hasil production build secara lokal:
+
+```bash
+npm run preview
+```
+
+---
+
+## 📂 Project Structure
 
 ```text
 costify/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── features/
-│   ├── hooks/
-│   ├── utils/
-│   ├── App.tsx
-│   └── main.tsx
 ├── assets/
 │   └── readme/
 │       └── costify-banner.png
+│
+├── src/
+│   ├── assets/
+│   │   └── images/
+│   │       └── costify-logo.png
+│   │
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+│
+├── README.md
 ├── index.html
 ├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
+└── vite.config.ts
 ```
-
-Struktur dapat berkembang mengikuti kebutuhan aplikasi selama development.
 
 ---
 
-## Development Roadmap
+## 🗺️ Development Status
 
-### V1 — Core Calculator
+### Core Calculator
 
-Fokus utama:
+- [x] React + TypeScript + Vite setup
+- [x] Dynamic cost components
+- [x] Total modal calculation
+- [x] HPP calculation
+- [x] Markup calculation
+- [x] Margin calculation
+- [x] Manual selling price
+- [x] Recommended selling price
+- [x] Rp500 price rounding
+- [x] Actual profit calculation
+- [x] Actual markup
+- [x] Actual margin
+- [x] Potential total profit
+
+### Navigation
+
+- [x] React Router
+- [x] Desktop navigation
+- [x] Mobile header
+- [x] Mobile bottom navigation
+- [x] Responsive layout
+
+### Storage & History
+
+- [x] Browser Local Storage
+- [x] Save calculation
+- [x] Calculation history
+- [x] Edit calculation
+- [x] Update existing calculation
+- [x] Delete calculation
+- [x] Delete confirmation
+
+### Products
+
+- [x] Automatic product grouping
+- [x] Unique product list
+- [x] Calculation count per product
+- [x] Latest HPP
+- [x] Latest selling price
+- [x] Latest profit
+- [x] Latest margin
+- [x] Latest calculation date
+- [x] Profit / loss status
+
+### Next
+
+- [ ] Repository public release
+- [ ] Progressive Web App
+- [ ] Web app manifest
+- [ ] App icons
+- [ ] Service worker
+- [ ] Installable mobile experience
+- [ ] Offline support
+- [ ] Production deployment
+- [ ] Vercel deployment
+
+---
+
+## 🔒 Data Storage
+
+Costify saat ini menggunakan browser **Local Storage**.
+
+Artinya:
+
+- Data tersimpan pada browser dan perangkat yang digunakan.
+- Data belum tersinkronisasi antarperangkat.
+- Menghapus browser data atau Local Storage dapat menghapus data Costify.
+- Costify saat ini tidak mengirim data perhitungan ke server eksternal.
+- Costify belum membutuhkan akun pengguna.
+
+Arsitektur penyimpanan dapat dikembangkan lebih lanjut apabila kebutuhan aplikasi bertambah.
+
+---
+
+## 🎯 Project Goal
+
+Costify dibuat untuk membuat proses menentukan harga jual menjadi lebih cepat, jelas, dan mudah dipahami.
+
+Daripada hanya menebak harga jual, Costify membantu melihat hubungan antara:
 
 ```text
 Modal
   ↓
 HPP
   ↓
-Profit
-  ↓
 Markup / Margin
   ↓
 Harga Jual
-```
-
-Target V1:
-
-- Kalkulator modal
-- Dynamic cost input
-- HPP per unit
-- Profit calculation
-- Markup calculation
-- Margin calculation
-- Harga jual manual
-- Harga jual rekomendasi
-- Responsive layout
-
----
-
-### V2 — Local Data
-
-Direncanakan:
-
-- Riwayat perhitungan
-- Simpan produk
-- Edit produk
-- Duplicate calculation
-- Local storage
-- Product history
-
----
-
-### V3 — Progressive Web App
-
-Direncanakan:
-
-- PWA manifest
-- Application icon
-- Install to device
-- Offline mode
-- Service worker
-- App-like experience
-
----
-
-## Future Development
-
-Setelah fitur utama stabil, Costify dapat dikembangkan lebih lanjut dengan:
-
-- Dashboard
-- Statistik biaya
-- Statistik profit
-- Product library
-- Cost templates
-- Export data
-- Import data
-- Backup data
-- Restore data
-- IndexedDB storage
-- Data visualization
-- Multi-product calculation
-
----
-
-## Design Principles
-
-Costify dikembangkan dengan beberapa prinsip utama.
-
-### Simple
-
-Interface dibuat sederhana agar pengguna dapat langsung memahami cara penggunaan tanpa proses belajar yang panjang.
-
-### Flexible
-
-Komponen biaya tidak dibatasi oleh kategori tertentu.
-
-Pengguna bebas menentukan kebutuhan biaya sesuai produk masing-masing.
-
-### Responsive
-
-Costify dirancang agar dapat digunakan dengan nyaman pada:
-
-- Desktop
-- Laptop
-- Tablet
-- Smartphone
-
-### Local First
-
-Sebagian besar fitur utama dirancang agar dapat berjalan tanpa server.
-
-Data dapat disimpan secara lokal pada perangkat pengguna.
-
-### Offline Friendly
-
-Ketika dukungan PWA sudah diterapkan, Costify akan tetap dapat digunakan untuk kalkulasi dasar meskipun tanpa koneksi internet.
-
----
-
-## Example Calculation
-
-Contoh sederhana:
-
-```text
-Nama Produk:
-Keychain Custom
-
-Jumlah Produk:
-1
-
-Komponen Biaya:
-
-Filament          Rp15.000
-Listrik            Rp2.000
-Kemasan            Rp2.500
-Ring Keychain      Rp1.000
-──────────────────────────
-Total Modal       Rp20.500
-```
-
-Karena jumlah produk adalah `1`:
-
-```text
-HPP per Unit
-Rp20.500
-```
-
-Jika target markup:
-
-```text
-30%
-```
-
-Maka:
-
-```text
+  ↓
 Profit
-Rp6.150
-
-Harga Jual
-Rp26.650
-```
-
-Costify kemudian dapat memberikan rekomendasi pembulatan harga jual, misalnya:
-
-```text
-Rp27.000
 ```
 
 ---
 
-## Development Status
+## 🔮 Planned Improvements
 
-**Status:** Early Development
+Beberapa pengembangan yang direncanakan:
 
-Current progress:
-
-- [x] Application name finalized
-- [x] Costify visual identity created
-- [x] Costify web banner created
-- [x] GitHub repository created
-- [x] Project direction changed to Web App
-- [x] Initial application concept created
-- [x] V1 calculation concept created
-- [ ] React + Vite + TypeScript initialization
-- [ ] Project structure
-- [ ] Costify design system
-- [ ] Responsive layout
-- [ ] Calculator UI
-- [ ] Dynamic cost input
-- [ ] Calculation logic
-- [ ] Local storage
-- [ ] PWA support
-- [ ] Testing
+- Progressive Web App
+- Offline mode
+- Install Costify di smartphone
+- Search riwayat
+- Filter riwayat
+- Search produk
+- Product detail page
+- Backup dan restore data
+- Export data
+- Improved Local Storage management
+- IndexedDB jika kebutuhan penyimpanan bertambah
+- Production deployment
+- Vercel deployment
 
 ---
 
-## Project Goal
+## 📄 License
 
-Costify dibuat untuk membuat proses menghitung biaya produksi dan menentukan harga jual menjadi lebih cepat, jelas, dan mudah dipahami.
+License akan ditentukan sebelum public release.
 
-Costify tidak hanya ditujukan sebagai kalkulator sederhana, tetapi sebagai alat bantu perhitungan bisnis yang fleksibel dan mudah digunakan.
+---
 
 <p align="center">
-  <strong>Calculate Smart. Sell Confident.</strong>
+  <strong>Costify</strong>
 </p>
 
----
-
 <p align="center">
-  <strong>Costify</strong><br>
-  Built with React, TypeScript & Vite
+  <em>Calculate Smart. Sell Confident.</em>
 </p>
