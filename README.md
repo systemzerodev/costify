@@ -12,6 +12,12 @@
   Simple web app untuk menghitung modal, HPP, profit, markup, margin, dan harga jual produk.
 </p>
 
+<p align="center">
+  <a href="https://costify-nine.vercel.app">
+    <strong>🌐 Live Demo</strong>
+  </a>
+</p>
+
 ---
 
 ## ✨ Features
@@ -116,7 +122,7 @@ Costify menampilkan ringkasan hasil berupa:
 
 Perhitungan dapat disimpan langsung di browser menggunakan **Local Storage**.
 
-Saat ini Costify tidak membutuhkan:
+Costify saat ini tidak membutuhkan:
 
 - Database server
 - Akun pengguna
@@ -246,9 +252,56 @@ Layout kalkulator, riwayat, dan produk otomatis menyesuaikan ukuran layar.
 
 ---
 
+## 📲 Progressive Web App
+
+Costify sudah mendukung **Progressive Web App (PWA)**.
+
+Artinya Costify dapat:
+
+- Di-install dari browser
+- Dibuka sebagai aplikasi standalone
+- Digunakan tanpa address bar browser
+- Berjalan secara offline
+- Menggunakan app icon sendiri
+- Menyimpan data Local Storage dalam mode PWA
+- Dibuka kembali dari desktop atau Start Menu
+
+PWA Costify menggunakan:
+
+- Web App Manifest
+- Service Worker
+- Workbox
+- Offline cache
+- Auto-update service worker
+
+---
+
+## 🌐 Live Version
+
+Costify sudah tersedia secara online melalui Vercel.
+
+```text
+https://costify-nine.vercel.app
+```
+
+Versi production sudah diuji untuk:
+
+- Kalkulator
+- Riwayat
+- Produk
+- React Router
+- Direct route refresh
+- PWA installation
+- Standalone mode
+- Service Worker
+- Offline mode
+- Local Storage persistence
+
+---
+
 ## 🛠️ Tech Stack
 
-Costify saat ini menggunakan:
+Costify menggunakan:
 
 - React
 - TypeScript
@@ -257,6 +310,9 @@ Costify saat ini menggunakan:
 - Lucide React
 - CSS
 - Browser Local Storage
+- Vite PWA Plugin
+- Workbox
+- Vercel
 
 ---
 
@@ -392,6 +448,12 @@ Untuk melihat hasil production build secara lokal:
 npm run preview
 ```
 
+Biasanya dapat diakses melalui:
+
+```text
+http://localhost:4173
+```
+
 ---
 
 ## 📂 Project Structure
@@ -401,6 +463,14 @@ costify/
 ├── assets/
 │   └── readme/
 │       └── costify-banner.png
+│
+├── public/
+│   ├── app-icon.png
+│   ├── apple-touch-icon.png
+│   ├── favicon.svg
+│   ├── icons.svg
+│   ├── pwa-192x192.png
+│   └── pwa-512x512.png
 │
 ├── src/
 │   ├── assets/
@@ -412,9 +482,11 @@ costify/
 │   ├── index.css
 │   └── main.tsx
 │
+├── .gitignore
 ├── README.md
 ├── index.html
 ├── package.json
+├── vercel.json
 └── vite.config.ts
 ```
 
@@ -445,6 +517,7 @@ costify/
 - [x] Mobile header
 - [x] Mobile bottom navigation
 - [x] Responsive layout
+- [x] Vercel SPA routing
 
 ### Storage & History
 
@@ -455,6 +528,7 @@ costify/
 - [x] Update existing calculation
 - [x] Delete calculation
 - [x] Delete confirmation
+- [x] Data persistence
 
 ### Products
 
@@ -468,17 +542,31 @@ costify/
 - [x] Latest calculation date
 - [x] Profit / loss status
 
-### Next
+### Progressive Web App
 
-- [ ] Repository public release
-- [ ] Progressive Web App
-- [ ] Web app manifest
-- [ ] App icons
-- [ ] Service worker
-- [ ] Installable mobile experience
-- [ ] Offline support
-- [ ] Production deployment
-- [ ] Vercel deployment
+- [x] Vite PWA Plugin
+- [x] Web App Manifest
+- [x] PWA App ID
+- [x] App icons
+- [x] Apple Touch Icon
+- [x] Service Worker
+- [x] Workbox cache
+- [x] Auto-update service worker
+- [x] Offline support
+- [x] Installable PWA
+- [x] Standalone mode
+- [x] Local Storage persistence in PWA
+
+### Deployment
+
+- [x] Public GitHub repository
+- [x] Vercel configuration
+- [x] Production build
+- [x] Vercel deployment
+- [x] Production routing
+- [x] Production PWA
+- [x] Production offline test
+- [x] Production install test
 
 ---
 
@@ -491,8 +579,10 @@ Artinya:
 - Data tersimpan pada browser dan perangkat yang digunakan.
 - Data belum tersinkronisasi antarperangkat.
 - Menghapus browser data atau Local Storage dapat menghapus data Costify.
-- Costify saat ini tidak mengirim data perhitungan ke server eksternal.
-- Costify belum membutuhkan akun pengguna.
+- Costify tidak mengirim data perhitungan ke server eksternal.
+- Costify tidak membutuhkan akun pengguna.
+
+Data pada website dan PWA tetap mengikuti browser profile/origin tempat Costify digunakan.
 
 Arsitektur penyimpanan dapat dikembangkan lebih lanjut apabila kebutuhan aplikasi bertambah.
 
@@ -520,27 +610,26 @@ Profit
 
 ## 🔮 Planned Improvements
 
-Beberapa pengembangan yang direncanakan:
+Pengembangan berikutnya dapat mencakup:
 
-- Progressive Web App
-- Offline mode
-- Install Costify di smartphone
 - Search riwayat
 - Filter riwayat
 - Search produk
 - Product detail page
-- Backup dan restore data
+- Backup data
+- Restore data
 - Export data
+- Import data
 - Improved Local Storage management
 - IndexedDB jika kebutuhan penyimpanan bertambah
-- Production deployment
-- Vercel deployment
+- Better PWA update experience
+- Data synchronization pada versi yang lebih besar
 
 ---
 
 ## 📄 License
 
-License akan ditentukan sebelum public release.
+License akan ditentukan pada tahap pengembangan berikutnya.
 
 ---
 
